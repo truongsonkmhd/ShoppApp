@@ -1,9 +1,19 @@
 server:
-  port: 8080
-  servlet:
-    context-path: /identity
+  port: 9898
+
 spring:
-  datasource:
-    url: "jdbc:mysql://localhost:3306/recruitmentweb"
-    username: root
-    password: Son01072004jqk@
+  application:
+    name: backend-service
+  profiles:
+    active: @spring.profiles.active@
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+logging:
+  level:
+    root: INFO
+    web: INFO
