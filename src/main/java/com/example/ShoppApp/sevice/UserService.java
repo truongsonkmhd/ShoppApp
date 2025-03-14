@@ -17,9 +17,9 @@ public interface UserService {
 
     UserResponse findByEmail(String email);
 
-    int save(UserUpdateRequest req);
+    long save(UserCreationRequest req);
 
-    void update(UserCreationRequest req);
+    void update(UserUpdateRequest req);
 
     void changePassword(UserPasswordRequest oldPassword);
 

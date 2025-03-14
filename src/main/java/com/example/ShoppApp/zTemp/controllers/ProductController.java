@@ -1,6 +1,6 @@
-package com.example.ShoppApp.hihihhii.controllers;
+package com.example.ShoppApp.zTemp.controllers;
 
-import com.example.ShoppApp.hihihhii.dtos.ProductDTO;
+import com.example.ShoppApp.zTemp.dtos.ProductDTO;
 import jakarta.validation.Valid;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;

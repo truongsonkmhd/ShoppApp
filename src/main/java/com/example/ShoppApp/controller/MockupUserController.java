@@ -16,7 +16,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/mockup/user")
-@Tag(name = "User Controller")
+@Tag(name = "Mockup User Controller")
 public class MockupUserController {
 
     @Operation(summary = "Test API" , description = "Mo ta chi tiet")
