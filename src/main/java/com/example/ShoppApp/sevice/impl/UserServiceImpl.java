@@ -149,9 +149,21 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void delete(Long id) {
+        log.info("Deleting user: {}" , id);
+
+        // Get user by id
+        UserEntity user = getUserEntity(id);
+        user.setStatus(UserStatus.INACTIVE);
+        userRepository.save(user);
+        log.info("Deleted user: {}" , user);
 
     }
 
+    /**
+     * Get user by id
+     * @param id
+     * @return
+     */
     private UserEntity getUserEntity(Long id){
         return userRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("User not found"));
     }

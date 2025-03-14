@@ -143,9 +143,11 @@ public class UserController {
     }
 
     @Operation(summary = "Inactivate  User" , description = "API active user from database")
-    @DeleteMapping("/{userId}/del")
-    public Map<String, Object> deleteUser(@RequestBody Long userId) {
+    @DeleteMapping("/del/{userId}")
+    public Map<String, Object> deleteUser(@PathVariable Long userId) {
+        log.info("Deleting user: {}" , userId);
 
+        userService.delete(userId);
         Map<String , Object> result = new LinkedHashMap<>();
         result.put("status" , HttpStatus.RESET_CONTENT.value());
         result.put("message", "User deleted successfully");
