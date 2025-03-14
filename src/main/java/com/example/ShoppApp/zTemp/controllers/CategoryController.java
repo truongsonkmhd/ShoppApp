@@ -1,6 +1,6 @@
-package com.example.ShoppApp.hihihhii.controllers;
+package com.example.ShoppApp.zTemp.controllers;
 
-import com.example.ShoppApp.hihihhii.dtos.CategoryDTO;
+import com.example.ShoppApp.zTemp.dtos.CategoryDTO;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;

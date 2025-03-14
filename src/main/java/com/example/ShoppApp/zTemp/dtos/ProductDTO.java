@@ -1,4 +1,4 @@
-package com.example.ShoppApp.hihihhii.dtos;
+package com.example.ShoppApp.zTemp.dtos;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;

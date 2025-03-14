@@ -1,4 +1,4 @@
-package com.example.ShoppApp.hihihhii.dtos;
+package com.example.ShoppApp.zTemp.dtos;
 
 import jakarta.validation.constraints.NotEmpty;
 import lombok.*;

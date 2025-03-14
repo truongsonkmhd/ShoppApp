@@ -5,7 +5,7 @@ import lombok.Setter;
 
 import java.io.Serializable;
 @Getter
-@Setter
+@Setter // đây là javaBean
 public class AddressRequest implements Serializable {
     private String apartmentNumber;
     private String floor;
