@@ -1,9 +1,10 @@
 package com.example.ShoppApp.controller;
 
+import com.example.ShoppApp.common.Gender;
 import com.example.ShoppApp.controller.request.UserPasswordRequest;
 import com.example.ShoppApp.controller.request.UserCreationRequest;
 import com.example.ShoppApp.controller.request.UserUpdateRequest;
-import com.example.ShoppApp.model.UserResponse;
+import com.example.ShoppApp.controller.response.UserResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
@@ -31,7 +32,7 @@ public class MockupUserController {
        userResponse1.setId(1L);
        userResponse1.setFistName("son");
        userResponse1.setLastName("Java");
-       userResponse1.setGender("nam");
+       userResponse1.setGender(Gender.FEMALE);
        userResponse1.setBirthday(new Date());
        userResponse1.setUserName("admin");
        userResponse1.setEmail("admin@gmail.com");
@@ -41,7 +42,7 @@ public class MockupUserController {
         userResponse2.setId(2L);
         userResponse2.setFistName("sonLai");
         userResponse2.setLastName("pyton");
-        userResponse2.setGender("nam");
+        userResponse2.setGender(Gender.FEMALE);
         userResponse2.setBirthday(new Date());
         userResponse2.setUserName("product");
         userResponse2.setEmail("product@gmail.com");
@@ -64,7 +65,7 @@ public class MockupUserController {
         userNameDetail.setId(1L);
         userNameDetail.setFistName("son");
         userNameDetail.setLastName("Java");
-        userNameDetail.setGender("nam");
+        userNameDetail.setGender(Gender.FEMALE);
         userNameDetail.setBirthday(new Date());
         userNameDetail.setUserName("admin");
         userNameDetail.setEmail("admin@gmail.com");

@@ -3,7 +3,8 @@ package com.example.ShoppApp.controller;
 import com.example.ShoppApp.controller.request.UserCreationRequest;
 import com.example.ShoppApp.controller.request.UserPasswordRequest;
 import com.example.ShoppApp.controller.request.UserUpdateRequest;
-import com.example.ShoppApp.model.UserResponse;
+import com.example.ShoppApp.controller.response.UserPageResponse;
+import com.example.ShoppApp.controller.response.UserResponse;
 import com.example.ShoppApp.sevice.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -47,57 +48,28 @@ public class UserController {
     @GetMapping("/list")
     // sample => để mockup dữ liệu cho bên fe làm
     public Map<String , Object> getList(@RequestParam(required = false) String keyword,
+                                      @RequestParam(required = false) String sort,
                                       @RequestParam(defaultValue = "0") int page,
                                       @RequestParam(defaultValue = "20") int size){
 
-        //c1:
-       UserResponse userResponse1 = new UserResponse();
-       userResponse1.setId(1L);
-       userResponse1.setFistName("son");
-       userResponse1.setLastName("Java");
-       userResponse1.setGender("nam");
-       userResponse1.setBirthday(new Date());
-       userResponse1.setUserName("admin");
-       userResponse1.setEmail("admin@gmail.com");
-       userResponse1.setPhone("0978693175");
-
-        UserResponse userResponse2 = new UserResponse();
-        userResponse2.setId(2L);
-        userResponse2.setFistName("sonLai");
-        userResponse2.setLastName("pyton");
-        userResponse2.setGender("nam");
-        userResponse2.setBirthday(new Date());
-        userResponse2.setUserName("product");
-        userResponse2.setEmail("product@gmail.com");
-        userResponse2.setPhone("0367853250");
-
-        List<UserResponse> userList = List.of(userResponse1, userResponse2);
-
+        log.info("Get user list");
         Map<String , Object> result = new LinkedHashMap<>();
-        result.put("status" , HttpStatus.OK.value());
+        result.put("status", HttpStatus.OK.value());
         result.put("message" , "user list");
-        result.put("data" , userList);
+        result.put("data" , userService.findAll(keyword,sort,page,size));
+
         return result;
     }
 
     @Operation(summary = "Get user detail" , description = "API retrieve user detail by ID from database")
     @GetMapping("/{userId}")
     public Map<String, Object> getUserDetail(@PathVariable Long userId){
-
-        UserResponse userNameDetail = new UserResponse();
-        userNameDetail.setId(1L);
-        userNameDetail.setFistName("son");
-        userNameDetail.setLastName("Java");
-        userNameDetail.setGender("nam");
-        userNameDetail.setBirthday(new Date());
-        userNameDetail.setUserName("admin");
-        userNameDetail.setEmail("admin@gmail.com");
-        userNameDetail.setPhone("0978693175");
+        log.info("Get user detail by ID: {}" , userId);
 
         Map<String , Object> result = new LinkedHashMap<>();
         result.put("status", HttpStatus.OK.value());
         result.put("message" , "user");
-        result.put("data" , userNameDetail);
+        result.put("data" , userService.findById(userId));
 
         return result;
 
