@@ -1,4 +1,4 @@
-package com.example.ShoppApp.controller.request;
+package com.example.ShoppApp.dto.request;
 
 import lombok.Getter;
 import lombok.Setter;

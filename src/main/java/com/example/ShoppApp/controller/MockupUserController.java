@@ -1,10 +1,10 @@
 package com.example.ShoppApp.controller;
 
 import com.example.ShoppApp.common.Gender;
-import com.example.ShoppApp.controller.request.UserPasswordRequest;
-import com.example.ShoppApp.controller.request.UserCreationRequest;
-import com.example.ShoppApp.controller.request.UserUpdateRequest;
-import com.example.ShoppApp.controller.response.UserResponse;
+import com.example.ShoppApp.dto.request.UserPasswordRequest;
+import com.example.ShoppApp.dto.request.UserCreationRequest;
+import com.example.ShoppApp.dto.request.UserUpdateRequest;
+import com.example.ShoppApp.dto.response.UserResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;

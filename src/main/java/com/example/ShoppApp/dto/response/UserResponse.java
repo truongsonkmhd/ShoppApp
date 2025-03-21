@@ -1,22 +1,24 @@
-package com.example.ShoppApp.controller.request;
+package com.example.ShoppApp.dto.response;
 
 import com.example.ShoppApp.common.Gender;
-import com.example.ShoppApp.model.AddressEntity;
-import lombok.Getter;
+import lombok.*;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
 @Getter
-public class UserUpdateRequest implements Serializable {
+@Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+public class UserResponse implements Serializable {
     private Long id;
-    private String firstName;
+    private String fistName;
     private String lastName;
     private Gender gender;
     private Date birthday;
     private String userName;
     private String email;
     private String phone;
-    private List<AddressEntity> addresses;
+    //more
 }

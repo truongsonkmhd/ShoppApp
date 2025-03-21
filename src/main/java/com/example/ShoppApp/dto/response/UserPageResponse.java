@@ -1,4 +1,4 @@
-package com.example.ShoppApp.controller.response;
+package com.example.ShoppApp.dto.response;
 
 import lombok.*;
 

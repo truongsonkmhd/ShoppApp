@@ -1,14 +1,14 @@
 package com.example.ShoppApp.sevice.impl;
 
 import com.example.ShoppApp.common.UserStatus;
-import com.example.ShoppApp.controller.request.UserCreationRequest;
-import com.example.ShoppApp.controller.request.UserPasswordRequest;
-import com.example.ShoppApp.controller.request.UserUpdateRequest;
-import com.example.ShoppApp.controller.response.UserPageResponse;
+import com.example.ShoppApp.dto.request.UserCreationRequest;
+import com.example.ShoppApp.dto.request.UserPasswordRequest;
+import com.example.ShoppApp.dto.request.UserUpdateRequest;
+import com.example.ShoppApp.dto.response.UserPageResponse;
 import com.example.ShoppApp.exception.ResourceNotFoundException;
 import com.example.ShoppApp.model.AddressEntity;
 import com.example.ShoppApp.model.UserEntity;
-import com.example.ShoppApp.controller.response.UserResponse;
+import com.example.ShoppApp.dto.response.UserResponse;
 import com.example.ShoppApp.repository.AddressRepository;
 import com.example.ShoppApp.repository.UserRepository;
 import com.example.ShoppApp.sevice.UserService;

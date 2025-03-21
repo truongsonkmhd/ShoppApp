@@ -1,9 +1,8 @@
-package com.example.ShoppApp.controller.request;
+package com.example.ShoppApp.dto.request;
 
 import com.example.ShoppApp.common.Gender;
 import com.example.ShoppApp.common.UserType;
 import lombok.Getter;
-import lombok.Setter;
 import lombok.ToString;
 
 import java.io.Serializable;

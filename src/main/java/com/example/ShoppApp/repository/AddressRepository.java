@@ -1,6 +1,5 @@
 package com.example.ShoppApp.repository;
 
-import com.example.ShoppApp.controller.request.AddressRequest;
 import com.example.ShoppApp.model.AddressEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
