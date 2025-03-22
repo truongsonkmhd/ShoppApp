@@ -14,8 +14,6 @@ public interface UserService {
 
     UserPageResponse getAllUsersWithSortByMultipleColumns(int pageNo, int pageSize, List<String> sorts);
 
-    UserPageResponse getAllUsersWithSortByColumnAndSearch(int pageNo, int pageSize, String search, String sortBy);
-
     UserResponse findById(Long id);
 
     UserResponse findByUsername(String username);

@@ -25,6 +25,7 @@ import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -100,11 +101,6 @@ public class UserServiceImpl implements UserService {
         return getUserPageResponse(pageNo, pageSize, users);
     }
 
-    @Override
-    public UserPageResponse getAllUsersWithSortByColumnAndSearch(int pageNo, int pageSize, String search, String sortBy) {
-
-    }
-
     /**
      * Convert UserEntities to user
      *
@@ -129,7 +125,7 @@ public class UserServiceImpl implements UserService {
         ).toList();
 
         UserPageResponse response = new UserPageResponse();
-        response.setPageNo(page);
+        response.setPageNumber(page);
         response.setPageSize(pageSize);
         response.setTotalElements(userEntities.getTotalElements());
         response.setTotalPages(userEntities.getTotalPages());

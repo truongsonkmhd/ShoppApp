@@ -46,7 +46,7 @@ public class UserController {
         private final UserService userService;
     */
 
-    @Operation(summary = "Test API", description = "Mo ta chi tiet")
+    @Operation(summary = "Get User Sorted", description = "API retrieve user sorted ")
     @GetMapping("/list")
     public ResponseData<UserPageResponse> getAllUsersWithSortBy(@RequestParam(required = false) String sortBy,
                                                   @RequestParam(defaultValue = "0", required = false) int pageNo,
@@ -62,8 +62,8 @@ public class UserController {
         }
     }
 
-    @Operation(summary = "Test API", description = "Mo ta chi tiet")
-    @GetMapping("/list")
+    @Operation(summary = "Get User Sorted multiple column", description = "API retrieve user sorted multiple column")
+    @GetMapping("/list_sort_multiple")
     public ResponseData<UserPageResponse> getAllUsersWithSortByMultipleColumns(@RequestParam(required = false) List<String> sort,
                                                                 @RequestParam(defaultValue = "0", required = false) int pageNo,
                                                                 @RequestParam(defaultValue = "20") int pageSize) {
@@ -77,8 +77,6 @@ public class UserController {
             return new ResponseError(HttpStatus.BAD_REQUEST.value(), e.getMessage());
         }
     }
-
-
 
     @Operation(summary = "Get user detail", description = "API retrieve user detail by ID from database")
     @GetMapping("/{userId}")

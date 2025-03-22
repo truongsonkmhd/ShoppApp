@@ -8,7 +8,7 @@ import java.io.Serializable;
 @Getter
 @Setter
 public abstract class PageResponseAbstract implements Serializable {
-    public int pageNo;
+    public int pageNumber;
     public int pageSize;
     public long totalPages;
     public long totalElements;
