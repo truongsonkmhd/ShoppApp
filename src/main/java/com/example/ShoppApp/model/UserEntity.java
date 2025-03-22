@@ -4,24 +4,22 @@ import com.example.ShoppApp.common.Gender;
 import com.example.ShoppApp.common.UserStatus;
 import com.example.ShoppApp.common.UserType;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
-import org.hibernate.annotations.CreationTimestamp;
+import lombok.*;
 import org.hibernate.annotations.JdbcTypeCode;
-import org.hibernate.annotations.UpdateTimestamp;
 import org.hibernate.type.SqlTypes;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
 @Entity
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "tbl_user")
-public class UserEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // phù hợp với PostgreSQL
-    @Column(name = "id")
-    private Long id;
+public class UserEntity extends AbstractEntity {
 
     @Column(name = "first_name", length = 255)
     private String firstName;
@@ -58,15 +56,5 @@ public class UserEntity {
     @JdbcTypeCode(SqlTypes.NAMED_ENUM)
     @Column(name = "status", length = 255)
     private UserStatus status;
-
-    @Column(name = "created_at", length = 255)
-    @Temporal(TemporalType.TIMESTAMP)
-    @CreationTimestamp
-    private Date createdAt;
-
-    @Column(name = "updated_at", length = 255)
-    @Temporal(TemporalType.TIMESTAMP)
-    @UpdateTimestamp
-    private Date updatedAt;
 
 }

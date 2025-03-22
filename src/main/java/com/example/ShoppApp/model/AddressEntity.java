@@ -1,24 +1,19 @@
 package com.example.ShoppApp.model;
 
 
-import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
-
-import java.util.Date;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import lombok.*;
 
 @Getter
 @Setter
 @Entity
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "tbl_address")
-public class AddressEntity{
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // phù hợp với PostgreSQL
-    @Column(name = "id")
-    private Long id;
+public class AddressEntity extends  AbstractEntity{
 
     @Column(name = "apartment_number")
     private String apartmentNumber;
@@ -47,13 +42,5 @@ public class AddressEntity{
     @Column(name = "user_id")
     private Long userId;
 
-    @Column(name = "created_at", length = 255)
-    @Temporal(TemporalType.TIMESTAMP)
-    @CreationTimestamp
-    private Date createdAt;
 
-    @Column(name = "updated_at", length = 255)
-    @Temporal(TemporalType.TIMESTAMP)
-    @UpdateTimestamp
-    private Date updatedAt;
 }
