@@ -1,9 +1,10 @@
 package com.example.ShoppApp.controller;
 
-import com.example.ShoppApp.controller.request.UserPasswordRequest;
-import com.example.ShoppApp.controller.request.UserCreationRequest;
-import com.example.ShoppApp.controller.request.UserUpdateRequest;
-import com.example.ShoppApp.model.UserResponse;
+import com.example.ShoppApp.common.Gender;
+import com.example.ShoppApp.dto.request.UserPasswordRequestDTO;
+import com.example.ShoppApp.dto.request.UserRequestDTO;
+import com.example.ShoppApp.dto.request.UserUpdateRequestDTO;
+import com.example.ShoppApp.dto.response.UserResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
@@ -31,7 +32,7 @@ public class MockupUserController {
        userResponse1.setId(1L);
        userResponse1.setFistName("son");
        userResponse1.setLastName("Java");
-       userResponse1.setGender("nam");
+       userResponse1.setGender(Gender.FEMALE);
        userResponse1.setBirthday(new Date());
        userResponse1.setUserName("admin");
        userResponse1.setEmail("admin@gmail.com");
@@ -41,7 +42,7 @@ public class MockupUserController {
         userResponse2.setId(2L);
         userResponse2.setFistName("sonLai");
         userResponse2.setLastName("pyton");
-        userResponse2.setGender("nam");
+        userResponse2.setGender(Gender.FEMALE);
         userResponse2.setBirthday(new Date());
         userResponse2.setUserName("product");
         userResponse2.setEmail("product@gmail.com");
@@ -64,7 +65,7 @@ public class MockupUserController {
         userNameDetail.setId(1L);
         userNameDetail.setFistName("son");
         userNameDetail.setLastName("Java");
-        userNameDetail.setGender("nam");
+        userNameDetail.setGender(Gender.FEMALE);
         userNameDetail.setBirthday(new Date());
         userNameDetail.setUserName("admin");
         userNameDetail.setEmail("admin@gmail.com");
@@ -81,7 +82,7 @@ public class MockupUserController {
 
     @Operation(summary = "Create User" , description = "API add new user to database")
     @PostMapping("/add")
-    public Map<String, Object> createUser(UserCreationRequest request) {
+    public Map<String, Object> createUser(UserRequestDTO request) {
 
         Map<String , Object> result = new LinkedHashMap<>();
         result.put("status" , HttpStatus.CREATED.value());
@@ -92,7 +93,7 @@ public class MockupUserController {
 
     @Operation(summary = "Update User" , description = "API update user to database")
     @PutMapping("/und")
-    public Map<String, Object> updateUser(UserUpdateRequest request) {
+    public Map<String, Object> updateUser(UserUpdateRequestDTO request) {
 
         Map<String , Object> result = new LinkedHashMap<>();
         result.put("status" , HttpStatus.ACCEPTED.value());
@@ -103,7 +104,7 @@ public class MockupUserController {
 
     @Operation(summary = "Change Password" , description = "API change password user to database")
     @PatchMapping("/change-pwd")
-    public Map<String, Object> changePassword(UserPasswordRequest request) {
+    public Map<String, Object> changePassword(UserPasswordRequestDTO request) {
 
         Map<String , Object> result = new LinkedHashMap<>();
         result.put("status" , HttpStatus.NO_CONTENT.value());

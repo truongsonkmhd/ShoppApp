@@ -1,11 +1,11 @@
-package com.example.ShoppApp.controller.request;
+package com.example.ShoppApp.dto.request;
 
 import lombok.Getter;
 
 import java.io.Serializable;
 
 @Getter
-public class UserPasswordRequest implements Serializable {
+public class UserPasswordRequestDTO implements Serializable {
     private Long id;
     private String password;
     private String confirmPassword;

@@ -1,15 +1,18 @@
 package com.example.ShoppApp.sevice;
 
-import com.example.ShoppApp.controller.request.UserCreationRequest;
-import com.example.ShoppApp.controller.request.UserPasswordRequest;
-import com.example.ShoppApp.controller.request.UserUpdateRequest;
-import com.example.ShoppApp.model.UserResponse;
+import com.example.ShoppApp.dto.request.UserRequestDTO;
+import com.example.ShoppApp.dto.request.UserPasswordRequestDTO;
+import com.example.ShoppApp.dto.request.UserUpdateRequestDTO;
+import com.example.ShoppApp.dto.response.UserPageResponse;
+import com.example.ShoppApp.dto.response.UserResponse;
 
 import java.util.List;
 
 public interface UserService {
 
-    List<UserResponse> findAll();
+    UserPageResponse getAllUsersWithSortBy(String sort, int page, int size);
+
+    UserPageResponse getAllUsersWithSortByMultipleColumns(int pageNo, int pageSize, List<String> sorts);
 
     UserResponse findById(Long id);
 
@@ -17,11 +20,11 @@ public interface UserService {
 
     UserResponse findByEmail(String email);
 
-    long save(UserCreationRequest req);
+    long saveUser(UserRequestDTO user);
 
-    void update(UserUpdateRequest req);
+    void update( long userId , UserUpdateRequestDTO user);
 
-    void changePassword(UserPasswordRequest oldPassword);
+    void changePassword(UserPasswordRequestDTO oldPassword);
 
     void delete(Long id);
 }
