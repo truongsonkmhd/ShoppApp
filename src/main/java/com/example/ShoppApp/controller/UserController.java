@@ -98,7 +98,7 @@ public class UserController {
 
         log.info("Request add user,{} {}", request.getFirstName(), request.getLastName());
         try{
-            long userId = userService.saveUser(request);
+            long userId = userService. saveUser(request);
             return new ResponseData<>(HttpStatus.CREATED.value(), Translator.toLocale("user.add.success"),userId);
         }catch (Exception e){
             log.info("errorMessage = {}", e.getMessage() , e.getCause());

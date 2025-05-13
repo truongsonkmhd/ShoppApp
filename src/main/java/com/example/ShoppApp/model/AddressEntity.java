@@ -13,7 +13,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "tbl_address")
-public class AddressEntity extends  AbstractEntity{
+public class AddressEntity extends  AbstractEntity<Long>{
 
     @Column(name = "apartment_number")
     private String apartmentNumber;
