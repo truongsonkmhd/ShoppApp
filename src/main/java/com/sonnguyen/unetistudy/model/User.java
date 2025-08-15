@@ -11,10 +11,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.io.Serializable;
-import java.util.Collection;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @Getter
 @Setter
@@ -23,7 +20,12 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "tbl_user")
-public class UserEntity extends AbstractEntity<Long> implements UserDetails , Serializable {
+public class User implements UserDetails , Serializable {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(name = "id")
+    private UUID id;
 
     @Column(name = "first_name", length = 255)
     private String firstName;
@@ -60,6 +62,15 @@ public class UserEntity extends AbstractEntity<Long> implements UserDetails , Se
     @JdbcTypeCode(SqlTypes.NAMED_ENUM)
     @Column(name = "status", length = 255)
     private UserStatus status;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "user")
+    private Set<Address> addresses = new HashSet<>();
+
+    @OneToMany(mappedBy = "user")
+    private Set<UserHasRole> roles = new HashSet<>();
+
+    @OneToMany(mappedBy = "user")
+    private Set<GroupHasUser> groups = new HashSet<>();
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

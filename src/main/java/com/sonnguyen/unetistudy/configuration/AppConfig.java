@@ -29,13 +29,12 @@ public class AppConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(AbstractHttpConfigurer::disable)
-                .authorizeHttpRequests(request -> request.requestMatchers(whitelistedUrls).permitAll()
+                .authorizeHttpRequests(request -> request.requestMatchers(whitelistedUrls).permitAll() // ngoai trừ api trong này ra thi con lai nhung cai khac phai authen
                         .anyRequest().authenticated())
-                .sessionManagement(manager -> manager.sessionCreationPolicy(STATELESS))
+                .sessionManagement(manager -> manager.sessionCreationPolicy(STATELESS))// khoong cho phep luu token
                 .authenticationProvider(authenticationProvider()).addFilterBefore(requestFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
-
 
     @Bean
     public WebSecurityCustomizer ignoreResources() {

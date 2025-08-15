@@ -7,8 +7,8 @@ import com.example.ShoppApp.dto.request.UserUpdateRequestDTO;
 import com.example.ShoppApp.dto.response.UserPageResponse;
 import com.example.ShoppApp.dto.response.UserResponse;
 import com.example.ShoppApp.exception.ResourceNotFoundException;
-import com.example.ShoppApp.model.AddressEntity;
-import com.example.ShoppApp.model.UserEntity;
+import com.example.ShoppApp.model.Address;
+import com.example.ShoppApp.model.User;
 import com.example.ShoppApp.repository.AddressRepository;
 import com.example.ShoppApp.repository.UserRepository;
 import com.example.ShoppApp.sevice.UserService;
@@ -25,7 +25,6 @@ import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -64,7 +63,7 @@ public class UserServiceImpl implements UserService {
         }
 
         Pageable pageable = PageRequest.of(pageNo,pageSize, Sort.by(sorts));
-        Page<UserEntity> users = userRepository.findAll(pageable);
+        Page<User> users = userRepository.findAll(pageable);
 
 
         return getUserPageResponse(pageNo, pageSize, users);
@@ -95,7 +94,7 @@ public class UserServiceImpl implements UserService {
 
         Pageable pageable = PageRequest.of(pageNo,pageSize, Sort.by(orders));
 
-        Page<UserEntity> users = userRepository.findAll(pageable);
+        Page<User> users = userRepository.findAll(pageable);
 
 
         return getUserPageResponse(pageNo, pageSize, users);
@@ -109,7 +108,7 @@ public class UserServiceImpl implements UserService {
      * @param userEntities
      * @return
      */
-    private static UserPageResponse getUserPageResponse(int page, int pageSize, Page<UserEntity> userEntities) {
+    private static UserPageResponse getUserPageResponse(int page, int pageSize, Page<User> userEntities) {
         log.info("Convert User Entity Page");
         List<UserResponse> userList = userEntities.stream().map(entity -> UserResponse.builder()
                 .id(entity.getId())
@@ -138,17 +137,17 @@ public class UserServiceImpl implements UserService {
 
         log.info("Find user by id: {}", id);
 
-        UserEntity userEntity = getUserEntity(id);
+        User user = getUserEntity(id);
 
         return UserResponse.builder()
                 .id(id)
-                .fistName(userEntity.getFirstName())
-                .lastName(userEntity.getLastName())
-                .gender(userEntity.getGender())
-                .birthday(userEntity.getBirthday())
-                .userName(userEntity.getUsername())
-                .phone(userEntity.getPhone())
-                .email(userEntity.getEmail())
+                .fistName(user.getFirstName())
+                .lastName(user.getLastName())
+                .gender(user.getGender())
+                .birthday(user.getBirthday())
+                .userName(user.getUsername())
+                .phone(user.getPhone())
+                .email(user.getEmail())
                 .build();
     }
 
@@ -168,7 +167,7 @@ public class UserServiceImpl implements UserService {
     // nếu gặp vấn đề gì trong qua trình lưu address thì sẽ rollback tất cả user
     public long saveUser(UserRequestDTO req) {
         log.info("saving user: {}", req);
-        UserEntity user = UserEntity.builder()
+        User user = User.builder()
                 .firstName(req.getFirstName())
                 .lastName(req.getLastName())
                 .gender(req.getGender())
@@ -183,9 +182,9 @@ public class UserServiceImpl implements UserService {
         // đoạn này data chưa được lưu vào data base
         if (user.getId() != null) {
 
-            List<AddressEntity> addresses = new ArrayList<>();
+            List<Address> addresses = new ArrayList<>();
             req.getAddresses().forEach(address -> {
-                AddressEntity addressEntity = AddressEntity.builder()
+                Address addressEntity = Address.builder()
                         .apartmentNumber(address.getApartmentNumber())
                         .floor(address.getFloor())
                         .building(address.getBuilding())
@@ -209,7 +208,7 @@ public class UserServiceImpl implements UserService {
     public void update(long userId,UserUpdateRequestDTO req) {
         log.info("Updating user: {}", req);
         // Get user by id
-        UserEntity user = getUserEntity(userId);
+        User user = getUserEntity(userId);
         user.setFirstName(req.getFirstName());
         user.setLastName(req.getLastName());
         user.setGender(req.getGender());
@@ -225,12 +224,12 @@ public class UserServiceImpl implements UserService {
         userRepository.save(user);
         log.info("Updated user: {}", req);
 
-        List<AddressEntity> addresses = new ArrayList<>();
+        List<Address> addresses = new ArrayList<>();
         // save address
         req.getAddresses().forEach(address -> {
-            AddressEntity addressEntity = addressRepository.findByUserIdAndAddressType(user.getId(), address.getAddressType());
+            Address addressEntity = addressRepository.findByUserIdAndAddressType(user.getId(), address.getAddressType());
             if (addressEntity == null) {
-                addressEntity = new AddressEntity();
+                addressEntity = new Address();
             }
             addressEntity.setApartmentNumber(address.getApartmentNumber());
             addressEntity.setFloor(address.getFloor());
@@ -252,7 +251,7 @@ public class UserServiceImpl implements UserService {
     public void changePassword(UserPasswordRequestDTO req) {
         log.info("Changing password for user: {}", req);
         // Get user by id
-        UserEntity user = getUserEntity(req.getId());
+        User user = getUserEntity(req.getId());
         if (req.getPassword().equals(req.getConfirmPassword())) {
             user.setPassword(passwordEncoder.encode(req.getPassword()));
         }
@@ -266,7 +265,7 @@ public class UserServiceImpl implements UserService {
         log.info("Deleting user: {}", id);
 
         // Get user by id
-        UserEntity user = getUserEntity(id);
+        User user = getUserEntity(id);
         user.setStatus(UserStatus.INACTIVE);
         userRepository.save(user);
         log.info("Deleted user: {}", user);
@@ -279,7 +278,7 @@ public class UserServiceImpl implements UserService {
      * @param id
      * @return
      */
-    private UserEntity getUserEntity(Long id) {
+    private User getUserEntity(Long id) {
         return userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("User not found"));
     }
 }

@@ -1,7 +1,7 @@
 package com.example.ShoppApp.dto.request;
 
 import com.example.ShoppApp.common.Gender;
-import com.example.ShoppApp.model.AddressEntity;
+import com.example.ShoppApp.model.Address;
 import com.example.ShoppApp.validator.GenderSubset;
 import com.example.ShoppApp.validator.PhoneNumber;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -14,7 +14,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 import java.util.Set;
 
 import static com.example.ShoppApp.common.Gender.*;
@@ -45,5 +44,5 @@ public class UserUpdateRequestDTO implements Serializable {
     private String phone;
 
     @NotEmpty(message = "addresses can not empty")
-    private Set<AddressEntity> addresses;
+    private Set<Address> addresses;
 }
